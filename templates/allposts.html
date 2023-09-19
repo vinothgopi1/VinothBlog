@@ -1,0 +1,70 @@
+
+  {% extends 'model.html' %}
+  
+  {% block content %}
+  
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  
+  <!--
+  
+  
+  <div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a class = 'btn btn-primary' href="/read" role = 'button'>MyPosts</a></p>
+        <p><a class = 'btn btn-primary' href="/all" role = 'button'>AllPosts</a></p>
+      </div>
+  
+    -->
+  <p><a class = 'btn btn-primary' href="/blogpage" role = 'button'>Back</a></p>
+  
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+  {% for row in database %} 
+  <div class="container">
+    <div class="well">
+        <div class="media">
+          <a class="pull-left" href="#">
+          <img class="media-object" src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg">
+        </a>
+        
+        <div class="media-body">
+          <h4 class="media-heading">{{row.title}}</h4>
+            <p class="text-right">By: {{row.name}} </p>
+            <p>{{row.body}}</p>
+            <ul class="list-inline list-unstyled">
+          <li><span><i class="glyphicon glyphicon-calendar"></i> {{row.time}} </span></li>
+              <li>|</li>
+              <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
+              <li>|</li>
+              <li>
+                 <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star"></span>
+                          <span class="glyphicon glyphicon-star-empty"></span>
+              </li>
+              <li>|</li>
+              <li>
+              <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
+                <span><i class="fa fa-facebook-square"></i></span>
+                <span><i class="fa fa-twitter-square"></i></span>
+                <span><i class="fa fa-google-plus-square"></i></span>
+              </li>
+        </ul>
+         </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  
+  
+  
+  
+     
+  
+  
+  
+  {% endblock %}

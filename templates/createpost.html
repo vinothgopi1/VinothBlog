@@ -1,0 +1,42 @@
+
+{% extends 'model.html' %}
+  
+{% block content %}
+
+
+
+
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a class = 'btn btn-primary' href="/read" role = 'button'>MyPosts</a></p>
+      <p><a class = 'btn btn-primary' href="/all" role = 'button'>AllPosts</a></p>
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1>New Post</h1>
+      <p>
+        Create Below
+      </p>
+      <hr>
+      <h3>
+
+
+        <form method= 'post', action = 'createpost'>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" placeholder="enter Title">
+          </div>
+            <div class="form-group">
+              <label for="content">Body</label>
+              <textarea class="form-control" name="content" rows="3"></textarea>
+            </div>
+          
+            <input type="submit" value="Create post" />
+        </form>
+      </h3>
+    </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

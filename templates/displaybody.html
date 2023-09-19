@@ -1,0 +1,37 @@
+{% extends 'model.html' %}
+  
+{% block content %}
+
+
+
+
+
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      {% if current_user.is_authenticated %}
+        <p><a class = 'btn btn-primary' href="/create" role = 'button'>CreatePost</a></p>
+        <p><a class = 'btn btn-primary' href="/read" role = 'button'>MyPosts</a></p>
+        <p><a class = 'btn btn-primary' href="/blogpage" role = 'button'>BlogPage</a></p>
+      {% endif %}
+    </div>
+    <div class="col-sm-8 text-left"> 
+      
+
+      {% for row in database %}
+          <h1>Title: {{row.title}}</h1>
+          <p> Body: {{row.body}}</p>
+          <br>
+          <p><a class = 'btn btn-primary' href="/delete/{{row.blog_id}}" role = 'button'>DeletePost</a></p>
+
+       {% endfor %}
+
+
+      <hr>
+
+    </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

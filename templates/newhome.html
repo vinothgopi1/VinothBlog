@@ -1,0 +1,32 @@
+{% extends 'model.html' %}
+  
+{% block content %}
+
+
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      {% if current_user.is_authenticated %}
+        <p><a class = 'btn btn-primary' href="/create" role = 'button'>CreatePost</a></p>
+        <p><a class = 'btn btn-primary' href="/read" role = 'button'>MyPosts</a></p>
+        <p><a class = 'btn btn-primary' href="/blogpage" role = 'button'>BlogPage</a></p>
+        <p><a class = 'btn btn-primary' href="/online" role = 'button'>OnlineUsers</a></p>
+
+
+      {% endif %}
+    </div>
+    <div class="col-sm-8 text-left"> 
+      <h1><i>Welcome To My Blog</i></h1>
+      <p>A place to write your thoughts and share them with others. Login or Sign Up and start <b>BLOGGING</b>.</p>
+
+
+      <hr>
+    
+
+      <img src = "https://img.freepik.com/free-vector/magenta-pink-rose-flower-sticker-tattoo-overlay-yellow-background-vector_53876-168190.jpg", alt = "rose logo", width = "300" height = "300">
+    </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

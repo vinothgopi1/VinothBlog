@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='csscode.css') }}" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script>src="https://unpkg.com/@popperjs/core@2"</script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 200%;
+      position:relative;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555555;
+      color: white;
+      padding: 15px;
+      bottom: 0;
+
+
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>              
+      </button>
+      <a class="navbar-brand" href="#"><img src ="https://img.freepik.com/free-vector/magenta-pink-rose-flower-sticker-tattoo-overlay-yellow-background-vector_53876-168190.jpg" alt = rose width = "30" height = "30" >  </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/home">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        {% if current_user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+       
+        {% endif %}
+        
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        {% if current_user.is_authenticated %}
+            
+            <li><a> {{current_user.username}} </a></li>
+
+        {% else %}
+
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+<footer class= 'navbar-fixed-bottom text-center'>
+    <p>Rose Blogs  ||   Copyright @2023</p>
+  </footer>
+  
+  </body>
+  </html>
+
+

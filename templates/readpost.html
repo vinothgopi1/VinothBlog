@@ -1,0 +1,105 @@
+
+{% extends 'model.html' %}
+  
+{% block content %}
+
+<!DOCTYPE html>
+
+<style>
+
+#appadd {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 10px;
+  height: 10px
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 800px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+</style>
+
+
+
+<div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a class = 'btn btn-primary' href="/create" role = 'button'>CreatePost</a></p>
+        <p><a class = 'btn btn-primary' href="/all" role = 'button'>AllPosts</a></p>
+        
+      </div>
+      <div class="col-sm-8 text-center"> 
+        <h1>All Your Posts</h1>
+        <p>
+          
+            <table class="styled-table" style = 'table-layout:fixed' width = '400px'>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Title</th>
+                  <th scope="col">Body</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class = 'active-row'>
+                  {% for row in database %}
+                  <td id = "appadd"><a href="/blogdetail/{{row.blog_id}}">{{row.title}}</a></td>
+                  <td id = "appadd">{{row.body}}</td>
+                  <td id = "appadd">{{row.time}}</td>
+                  <br>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+
+
+        </p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+  {% endblock %}
+
+
+
+
+

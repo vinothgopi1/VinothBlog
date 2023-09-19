@@ -1,0 +1,157 @@
+
+
+<style>
+.message-box {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+    
+}
+
+.inputs{
+    padding: 10px;
+    display: flex;
+}
+
+.messages {
+    overflow-y: scroll;
+    flex: 1;
+    width: 100%;
+}
+
+.text{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.muted {
+    font-size: 10px;
+    color: darkgray;
+}
+
+</style>
+
+
+
+
+<div class = "message-box">
+    <h2>Chat Room: {{room}}</h2>
+    <div class = 'messages' id = 'messages'></div>
+    <div class = 'inputs'>
+        <input
+            type = 'text'
+            rows = '3'
+            placeholder = 'Message'
+            name = 'message'
+            id = 'message'
+        />
+        <button type = 'button' name = 'send' onclick = "javascript:sendMessage()">Send</button>
+        
+    </div>
+</div>
+ 
+
+<button type = 'button'  name = 'leave' onclick = "javascript:leaveRoom()">Leave Room</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf-8">
+    var socket = io();
+    socket.on('connect', function() {
+        socket.emit('my event', {data: 'I\'m connected!'});
+        joinRoom()
+    });
+
+
+
+
+    socket.on('message', function(data,) {
+       // alert(data)
+
+        //for(var key in data){
+            //if(key != 'room'){
+                if (data["username"] != null){
+                    displayMessage(data["data"], data['username'])
+                }else {
+                    displayMessage(data["data"], 'Welcome')
+                }
+           // }
+        //}
+    });
+
+    function joinRoom() {
+        /*alert(document.getElementsById("username"))*/
+        
+        /*for (let i = 0; i < uname.length; i++){
+            let item = uname[i]
+        }
+        /*alert(item)
+        alert(uname.item())*/
+        
+        socket.emit('join', {"username": "{{name}}", "room" : "{{room}}"});
+    
+        //socket.emit('join', {data: 'joining'});
+    }   
+
+    function leaveRoom() {
+        alert('leave')
+        var uname = "{{name}}"
+        var uroom = "{{room}}"
+        socket.emit('leave', {"username": uname, "room" : uroom});
+        window.location.href = "/messaging"
+    }
+
+    function displayMessage(text, name) {
+     
+        
+        msg = document.getElementById('messages')
+        //msg1 = document.getElementById('message')
+        //alert(msg.value)
+
+        var content = `
+        <div class = 'text'>
+            <span>
+                <strong>${name}</strong>: ${text}
+            </span>
+        </div>
+        `
+        ;
+        
+
+        
+
+        msg.innerHTML += content;
+    }
+
+    function sendMessage(text){
+        flag = 1;
+        msg = document.getElementById('messages')
+        msg1 = document.getElementById('message')
+        var uroom = "{{room}}"
+        var name = '{{name}}'
+        //("hi" + msg1.value)
+        //msg.innerHTML += msg1.value + 'hello'
+        socket.emit('message', {data: msg1.value, 'username': name, "room": uroom})
+    }
+
+
+</script> 
+
+
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,44 @@
+
+{% extends 'model.html' %}
+  
+{% block content %}
+
+<div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <p><a class = 'btn btn-primary' href="/create" role = 'button'>CreatePost</a></p>
+        <p><a class = 'btn btn-primary' href="/read" role = 'button'>MyPosts</a></p>
+        <p><a class = 'btn btn-primary' href="/all" role = 'button'>AllPosts</a></p>
+        <p><a class = 'btn btn-primary' href="/testing" role = 'button'>Testing</a></p>
+        <p><a class = 'btn btn-primary' href="/testing1" role = 'button'>Testing</a></p>
+        <p><a class = 'btn btn-primary' href="/testing2" role = 'button'>Testing</a></p>
+        <p><a class = 'btn btn-primary' href="/messaging" role = 'button'>Message</a></p>
+
+      </div>
+      <div class="col-sm-8 text-left"> 
+        <h1>Hello {{ current_user.username }} !</h1>
+        <p>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p>{{msg}}</p>
+                {% endfor%}
+            {% endif %}
+        {% endwith %}
+
+        </p>
+        <hr>
+
+        <p> 
+          Create or Read a post
+        </p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+{% endblock %}
